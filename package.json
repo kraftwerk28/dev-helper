@@ -1,6 +1,6 @@
 {
   "name": "dev-helper",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "dev tool that refreshes browser page when served file changes",
   "main": "index.js",
   "scripts": {
@@ -26,5 +26,6 @@
   "homepage": "https://github.com/kraftwerk28/dev-helper#readme",
   "dependencies": {
     "websocket": "^1.0.26"
-  }
+  },
+  "bin": "./index.js"
 }
