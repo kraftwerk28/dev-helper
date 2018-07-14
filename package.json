@@ -1,0 +1,30 @@
+{
+  "name": "dev-helper",
+  "version": "1.0.0",
+  "description": "dev tool that refreshes browser page when served file changes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kraftwerk28/dev-helper.git"
+  },
+  "keywords": [
+    "dev",
+    "dev-tools",
+    "refresh",
+    "reload",
+    "auto-refresh",
+    "auto-reload"
+  ],
+  "author": "kraftwerk28",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kraftwerk28/dev-helper/issues"
+  },
+  "homepage": "https://github.com/kraftwerk28/dev-helper#readme",
+  "dependencies": {
+    "websocket": "^1.0.26"
+  }
+}
