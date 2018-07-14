@@ -12,12 +12,6 @@ let port = 8080;
 let client = null;
 let rootFile = 'index.html';
 let wsRootFile = '~' + rootFile;
-fs.writeFileSync(wsRootFile, mutate(rootFile));
-
-const oldLog = console.log;
-console.log = (...args) => {
-  oldLog('>', ...args);
-};
 
 const argRoute = {
   '^--html$': (arg) => {
@@ -48,6 +42,15 @@ args.forEach((argument, i) => {
     }
   }
 });
+
+fs.writeFileSync(wsRootFile, mutate(rootFile));
+
+const oldLog = console.log;
+console.log = (...args) => {
+  oldLog('>', ...args);
+};
+
+
 
 const refresh = () => {
   client.send('r');
