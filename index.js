@@ -14,7 +14,7 @@ let rootFile = 'index.html';
 let wsRootFile = '~' + rootFile;
 
 const argRoute = {
-  '^--html$': (arg) => {
+  '^--html$|^-h$': (arg) => {
     rootFile = arg;
     wsRootFile = '~' + rootFile;
   },
@@ -64,11 +64,9 @@ const server = http.createServer((req, res) => {
   };
   register(path, (ev, fname) => {
     if (fname === rootFile) {
-      console.log('root file cHHAUDH');
       fs.writeFileSync(wsRootFile, mutate(rootFile));
     }
     console.log(fname + ' was changed...');
-    console.log('event: ' + ev + '\n');
     refresh();
   });
 

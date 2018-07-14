@@ -1,6 +1,6 @@
 {
   "name": "dev-helper",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "dev tool that refreshes browser page when served file changes",
   "main": "index.js",
   "scripts": {
