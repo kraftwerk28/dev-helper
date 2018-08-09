@@ -12,6 +12,7 @@ let port = 8080;
 let client = null;
 let rootFile = 'index.html';
 let wsRootFile = '~' + rootFile;
+let newTab = false;
 
 const argRoute = {
   '^--html$|^-h$': (arg) => {
@@ -21,12 +22,15 @@ const argRoute = {
   '^--port$|^-p$': (arg) => {
     port = arg;
   },
-  '^--help$|^-h$': () => {
+  '^--help$': () => {
     console.log(fs.readFileSync('help', 'utf-8'));
     process.exit(0);
   },
-  '^--no-verbose$-s': () => {
+  '^--no-verbose$|^-s$': () => {
     console.log = () => { };
+  },
+  '^--new-tab$|^-t$': () => {
+    newTab = true;
   },
 };
 
@@ -43,14 +47,17 @@ args.forEach((argument, i) => {
   }
 });
 
-fs.writeFileSync(wsRootFile, mutate(rootFile));
+if (newTab) {
+  require('opn')('http://127.0.0.1:8080/ws.html');
+  wsRootFile = rootFile;
+} else {
+  fs.writeFileSync(wsRootFile, mutate(rootFile, port));
+}
 
 const oldLog = console.log;
 console.log = (...args) => {
   oldLog('>', ...args);
 };
-
-
 
 const refresh = () => {
   client.send('r');
@@ -63,10 +70,10 @@ const server = http.createServer((req, res) => {
     return;
   };
   register(path, (ev, fname) => {
-    if (fname === rootFile) {
-      fs.writeFileSync(wsRootFile, mutate(rootFile));
+    if (fname === rootFile && !newTab) {
+      fs.writeFileSync(wsRootFile, mutate(rootFile, port));
     }
-    console.log(fname + ' was changed...');
+    console.log(fname + ' changed...');
     refresh();
   });
 

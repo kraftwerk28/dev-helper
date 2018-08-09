@@ -4,7 +4,8 @@ Description:
   watches for served files changes and emits page refresh in browser
 
 Options:
-	--html			set root .html file (default: index.html)
-  -p,	--port			set port (default: 8080)
-  -h,	--help			print man
-  -s,	--no-verbose		no console output
+  -h, --html			set root .html file (default: index.html)
+  -p, --port			set port (default: 8080)
+      --help			print man
+  -s, --no-verbose		no console output
+  -t, --new-tab     		do not interrupt websocket connection
